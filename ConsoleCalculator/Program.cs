@@ -13,7 +13,7 @@ namespace ConsoleCalculator
         {
 
             Console.WriteLine("Калькулятор");
-
+            Continue:
 
             if (args.Length == 0)
             {
@@ -24,8 +24,18 @@ namespace ConsoleCalculator
                 Console.WriteLine("Введите второй операнд (b): ");
                 var b = Convert.ToDouble(Console.ReadLine());
                 var result=Calc.MyResult(a, b, oper);
-                Console.WriteLine($"Результат {oper} ({a};{b}) = {result}");
-                Console.ReadKey();
+                Console.WriteLine("Выход - нажмите Esc, повторить - Любую клавишу ");
+                var Continue = Console.ReadKey();
+                if (Continue.Key == ConsoleKey.Escape)
+                {
+                    goto Exit;
+                }
+                else
+                {
+                    goto Continue;
+                };
+            Exit:
+                Console.WriteLine("Exit");
             }
 
             else
@@ -35,8 +45,7 @@ namespace ConsoleCalculator
                 var a = Convert.ToDouble(args[1]);
                 var b = Convert.ToDouble(args[2]);
                 var result = Calc.MyResult(a, b, oper);
-                //Console.WriteLine($"Результат {oper} ({a};{b}) = {result}");
-                Console.ReadKey();
+                //Console.WriteLine($"Результат {oper} ({a};{b}) = {result}");               
             }
         }
     }
